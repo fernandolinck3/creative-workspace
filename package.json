@@ -1,0 +1,13 @@
+{
+  "name": "creative-workspace",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:client-agency": "npm run dev -w apps/client-agency",
+    "dev:personal-agency": "npm run dev -w apps/personal-agency",
+    "dev:chatbot-product": "npm run dev -w apps/chatbot-product"
+  }
+}

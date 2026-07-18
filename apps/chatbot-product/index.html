@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaJoia — Seu WhatsApp, sempre em dia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --teal-dark: #0f766e;
+    --teal-glow: rgba(13, 148, 136, 0.3);
+  }
+  body { font-family: 'Nunito', sans-serif; background: #0a0f0f; color: #f1f5f9; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+  .glass { background: rgba(15, 23, 23, 0.8); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(13, 148, 136, 0.15); }
+  .phone-frame {
+    background: #1a1d1d;
+    border-radius: 40px;
+    padding: 10px;
+    box-shadow: 0 0 60px var(--teal-glow), 0 20px 60px rgba(0,0,0,0.5);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .phone-screen {
+    background: #111; border-radius: 32px; overflow: hidden;
+    aspect-ratio: 9/19; padding: 24px 14px;
+    display: flex; flex-direction: column; gap: 8px;
+    font-size: 0.8rem; position: relative;
+  }
+  .msg-in {
+    background: #1e2d2d; color: #e2e8f0; border-radius: 18px 18px 18px 4px;
+    padding: 10px 14px; max-width: 85%; align-self: flex-start;
+    opacity: 0; transform: translateY(12px);
+  }
+  .msg-out {
+    background: var(--teal); color: #fff; border-radius: 18px 18px 4px 18px;
+    padding: 10px 14px; max-width: 85%; align-self: flex-end;
+    opacity: 0; transform: translateY(12px);
+  }
+  .msg-visible { animation: msgIn 0.4s ease-out forwards; }
+  @keyframes msgIn { to { opacity: 1; transform: translateY(0); } }
+  .joinha-final {
+    font-size: 3rem; text-align: center; opacity: 0; transform: scale(0.5);
+    animation: joinhaPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    animation-play-state: paused;
+  }
+  .joinha-final.fire { animation-play-state: running; }
+  @keyframes joinhaPop {
+    0% { opacity: 0; transform: scale(0.5); }
+    60% { opacity: 1; transform: scale(1.3); }
+    100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 12px var(--teal-glow)); }
+  }
+  .msg-time { font-size: 0.6rem; color: #64748b; margin-top: 2px; }
+  .msg-out .msg-time { color: rgba(255,255,255,0.6); }
+  @media (prefers-reduced-motion: reduce) {
+    .msg-in, .msg-out { opacity: 1; transform: none; animation: none; }
+    .joinha-final { opacity: 1; transform: scale(1); animation: none; }
+  }
+  .hero-bg {
+    background: radial-gradient(ellipse at 30% 20%, rgba(13,148,136,0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 60%, rgba(13,148,136,0.06) 0%, transparent 40%),
+                #0a0f0f;
+  }
+  .btn-primary {
+    background: var(--teal); color: #fff; font-weight: 700; border-radius: 999px;
+    padding: 14px 36px; font-size: 1.05rem; transition: all 0.2s;
+    box-shadow: 0 0 24px var(--teal-glow);
+  }
+  .btn-primary:hover { background: var(--teal-light); box-shadow: 0 0 36px rgba(20,184,166,0.4); transform: scale(1.02); }
+  .btn-secondary {
+    border: 2px solid rgba(13,148,136,0.3); color: #94a3b8; font-weight: 600;
+    border-radius: 999px; padding: 14px 36px; font-size: 1.05rem; transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal-light); }
+  .badge {
+    background: rgba(13,148,136,0.15); color: var(--teal-light);
+    border: 1px solid rgba(13,148,136,0.25); border-radius: 999px;
+    padding: 6px 16px; font-size: 0.8rem; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="fixed top-0 left-0 right-0 z-50 glass">
+  <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+    <div class="flex items-center gap-2.5">
+      <img src="assets/logo-reference.png" alt="TaJoia" class="h-8 w-auto">
+      <span class="text-xl font-bold tracking-tight text-white" style="font-family:'Space Grotesk'">TaJoia</span>
+    </div>
+    <nav class="hidden md:flex gap-8 text-sm font-semibold text-slate-400">
+      <a href="#como-funciona" class="hover:text-teal-400 transition">Como funciona</a>
+      <a href="#para-quem" class="hover:text-teal-400 transition">Para quem é</a>
+      <a href="#planos" class="hover:text-teal-400 transition">Planos</a>
+      <a href="#faq" class="hover:text-teal-400 transition">FAQ</a>
+    </nav>
+    <a href="#cta" class="hidden md:inline-block bg-teal-600 hover:bg-teal-500 text-white text-sm font-bold px-5 py-2.5 rounded-full transition shadow-lg shadow-teal-900/30">Testar grátis</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-bg min-h-screen flex items-center pt-20 pb-12">
+  <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-5 gap-10 items-center">
+
+    <!-- Coluna da conversa (3/5) -->
+    <div class="md:col-span-3 flex justify-center order-2 md:order-1">
+      <div class="phone-frame w-full max-w-[300px]">
+        <div class="phone-screen" id="chat-window">
+          <div class="flex items-center gap-2 pb-2 mb-1 border-b border-white/10">
+            <div class="w-8 h-8 rounded-full bg-teal-700 flex items-center justify-center overflow-hidden">
+              <img src="assets/logo-reference.png" alt="TaJoia" class="w-5 h-5 object-contain">
+            </div>
+            <div>
+              <div class="text-xs font-bold text-white">TaJoia</div>
+              <div class="text-[0.6rem] text-teal-400">online · responde em segundos</div>
+            </div>
+          </div>
+
+          <!-- Mensagens (animadas via JS) -->
+          <div class="msg-in" data-delay="800">
+            Oi, queria agendar um horário pra amanhã 💇‍♀️
+            <div class="msg-time">10:32</div>
+          </div>
+          <div class="msg-out" data-delay="2200">
+            Claro! Temos 10h, 14h ou 16h. Qual prefere?
+            <div class="msg-time">10:32</div>
+          </div>
+          <div class="msg-in" data-delay="3800">
+            14h!
+            <div class="msg-time">10:33</div>
+          </div>
+          <div class="msg-out" data-delay="5000">
+            Agendado! Te confirmo por SMS também ✅
+            <div class="msg-time">10:33</div>
+          </div>
+
+          <!-- Espaço flexível pra empurrar o joinha pro final -->
+          <div class="flex-1"></div>
+
+          <!-- Joinha -->
+          <div class="joinha-final" id="joinha">👍</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna do texto (2/5) -->
+    <div class="md:col-span-2 order-1 md:order-2 text-center md:text-left">
+      <div class="mb-6">
+        <span class="badge">🤖 Atendimento 24h no WhatsApp</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 text-white">
+        Seu WhatsApp respondendo<br>
+        <span class="text-teal-400">antes mesmo do cliente<br>mudar de ideia</span>
+      </h1>
+      <p class="text-lg text-slate-400 mb-8 max-w-md mx-auto md:mx-0 leading-relaxed">
+        Enquanto você atende, a TaJoia responde. Sem perder lead. Sem contratar ninguém.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+        <a href="#cta" class="btn-primary text-center">Quero 7 dias grátis</a>
+        <a href="#como-funciona" class="btn-secondary text-center">Ver como funciona ↓</a>
+      </div>
+      <p class="text-sm text-slate-500 mt-5 flex items-center gap-2 justify-center md:justify-start">
+        <span>⭐ 4.9</span>
+        <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+        <span>+500 negócios</span>
+        <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+        <span>7 dias grátis</span>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  (function() {
+    const messages = document.querySelectorAll('.msg-in, .msg-out');
+    const joinha = document.getElementById('joinha');
+
+    // Respeita prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      messages.forEach(m => m.classList.add('msg-visible'));
+      joinha.classList.add('fire');
+      return;
+    }
+
+    // Anima mensagens em sequência
+    messages.forEach(m => {
+      const delay = parseInt(m.dataset.delay) || 0;
+      setTimeout(() => m.classList.add('msg-visible'), delay);
+    });
+
+    // Joinha aparece após a última mensagem
+    const lastDelay = messages.length > 0
+      ? parseInt(messages[messages.length - 1].dataset.delay) + 600
+      : 6000;
+    setTimeout(() => joinha.classList.add('fire'), lastDelay);
+  })();
+</script>
+
+</body>
+</html>
