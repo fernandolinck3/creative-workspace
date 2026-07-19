@@ -1,0 +1,10 @@
+{
+  "name": "@creative-workspace/ui-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./index.ts",
+  "peerDependencies": {
+    "react": "^18.3.0"
+  }
+}
