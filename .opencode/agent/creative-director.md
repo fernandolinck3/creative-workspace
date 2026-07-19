@@ -39,8 +39,13 @@ Objetivo: entender o pedido e propor direção criativa, sem tocar em
 arquivo nenhum.
 1. Identifique para qual dos 3 apps é a tarefa (ver seção "Tom por app"
    abaixo) — pergunte se não estiver claro.
-2. Leia `BRAND.md` e `BRIEFING.md` do app correspondente, se existirem.
-3. Proponha **2-3 direções criativas distintas** (não variações da mesma
+2. Leia `BRAND.md`, `BRIEFING.md`, `design-tokens.json` e `QUALITY.md` do app
+   correspondente, se existirem. Se não existirem, exija que sejam criados
+   a partir dos templates em `templates/` antes de prosseguir.
+3. Rode o check de anti-padrões (ver `QUALITY.md` Gate 1 e `design-tokens.json`
+   → `antiPatterns`) contra cada direção proposta — descarte qualquer direção
+   que caia em padrão genérico antes mesmo de apresentar.
+4. Proponha **2-3 direções criativas distintas** (não variações da mesma
    ideia) com o trade-off de cada uma. Cite explicitamente o que está
    puxando de qual referência do briefing, e por quê.
 4. Rode o check de anti-padrões (ver `BRIEFING.md`/lista de "proibidos")
@@ -74,8 +79,8 @@ Objetivo: implementar o que foi aprovado, sem desviar do plano sem avisar.
    trate isso como uma reentrada rápida no Modo 2, não uma decisão sua.
 4. Se o padrão criado for genérico o suficiente pra reaproveitar em outro
    app, extraia para `packages/three-utils` antes de seguir.
-5. Só commita/faz deploy com confirmação explícita, seção por seção
-   concluída não implica aprovação de commit automático.
+5. Só commita/faz deploy com confirmação explícita e após passar pelos Gates
+   1-5 do `QUALITY.md`. Seção concluída NÃO implica aprovação de commit automático.
 
 ## Tom por app
 - `client-agency`: precisa respeitar brandbook do cliente, mais contido.

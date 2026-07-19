@@ -1,0 +1,90 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fernandolinck3/creative-workspace/main/tokens.schema.json",
+  "version": "1.0",
+  "description": "Design tokens centralizados para consumo por agentes de IA e código. Preenchido a partir do BRAND.md de cada app.",
+  "brand": {
+    "name": "",
+    "tagline": "",
+    "url": ""
+  },
+  "colors": {
+    "primary": "#0d9488",
+    "primaryLight": "#14b8a6",
+    "primaryDark": "#0f766e",
+    "secondary": "#f59e0b",
+    "background": "#0a0f0f",
+    "backgroundAlt": "#f5f7f7",
+    "surface": "#1a1d1d",
+    "text": "#f1f5f9",
+    "textSecondary": "#94a3b8",
+    "textOnLight": "#0f172a",
+    "textSecondaryOnLight": "#64748b"
+  },
+  "typography": {
+    "heading": "Space Grotesk",
+    "body": "Nunito",
+    "scale": {
+      "hero": "clamp(2.5rem, 8vw, 5rem)",
+      "h1": "clamp(2rem, 5vw, 3.5rem)",
+      "h2": "clamp(1.5rem, 3vw, 2.25rem)",
+      "h3": "1.25rem",
+      "body": "1rem",
+      "small": "0.875rem"
+    }
+  },
+  "spacing": {
+    "sectionPaddingY": "6rem",
+    "sectionPaddingX": "1.5rem",
+    "cardPadding": "2rem",
+    "cardGap": "1.5rem",
+    "containerMaxWidth": "80rem"
+  },
+  "shadows": {
+    "card": "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03)",
+    "cardHover": "0 4px 12px rgba(13,148,136,0.12)",
+    "glow": "0 0 24px rgba(13,148,136,0.3)",
+    "glowHover": "0 0 36px rgba(20,184,166,0.4)"
+  },
+  "borderRadius": {
+    "card": "1.5rem",
+    "button": "999px",
+    "badge": "999px",
+    "input": "0.75rem",
+    "mockup": "2.5rem"
+  },
+  "animation": {
+    "duration": "0.3s",
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "respectReducedMotion": true
+  },
+  "glassmorphism": {
+    "background": "rgba(15, 23, 23, 0.8)",
+    "blur": "20px",
+    "border": "1px solid rgba(13, 148, 136, 0.15)"
+  },
+  "components": {
+    "button": {
+      "primaryBackground": "var(--color-primary)",
+      "primaryHoverBackground": "var(--color-primaryLight)",
+      "paddingX": "2.25rem",
+      "paddingY": "0.875rem",
+      "fontWeight": "700"
+    },
+    "card": {
+      "background": "white",
+      "borderColor": "rgba(13,148,136,0.1)",
+      "hoverBorderColor": "rgba(13,148,136,0.3)"
+    },
+    "section": {
+      "alternateBackgrounds": true,
+      "firstSectionPaddingTop": "6rem"
+    }
+  },
+  "antiPatterns": {
+    "forbiddenColors": ["#3b82f6", "#8b5cf6", "#6366f1"],
+    "forbiddenGradients": ["from-indigo-500 to-purple-600"],
+    "forbiddenFonts": ["Inter (sem pairing)", "Roboto (sem pairing)"],
+    "forbiddenLayouts": ["hero-centrado + 3-cards-ícone + cta + footer"],
+    "forbiddenCopy": ["revolucione", "transforme", "potencialize", "sinergia", "disruptivo", "omnichannel", "next-gen"]
+  }
+}
